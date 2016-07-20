@@ -1,0 +1,4 @@
+1. parse all containment links in the metamodel
+2. build dependencies of containment links for all types in the metamodel
+3. identify which rules build each containment link
+4. after / before the PC is built, check whether given the elements in it, it is still possible to build the missing containment links for all types existing in the PC. This can be achieved by just looking at the types in the PC and not at the elements themselves
