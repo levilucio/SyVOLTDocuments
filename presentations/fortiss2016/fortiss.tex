@@ -35,7 +35,7 @@
 \author[Lucio, Oakes]{Levi L\'{u}cio, \textbf{Bentley James Oakes}}
 %\subtitle{}
 %\logo{}
-\institute[]{McGill University, Canada\\fortiss, Munich}
+\institute[]{McGill University, Montreal\\fortiss, Munich}
 %\date{}
 %\subject{}
 %\setbeamercovered{transparent}
@@ -56,10 +56,10 @@
 \item Model transformations are at the heart of model-driven engineering
 \item Want to verify correctness for transformation specifications
 \begin{itemize}[<+->]
-\item Verify visual/structural contracts
+\item Verify visual pre- / post-condition contracts
 \item Identify those combinations of rules where contracts hold or not
 \end{itemize}
-\item Objective: Verification for all input models
+\item Objective: Contract verification for all input models
 \begin{itemize}
 \item Input independence
 \end{itemize}
@@ -78,29 +78,22 @@
 \item Visual language for model transformations
 
 \item Graph-based, rule-based
+
+\item Rules are grouped in sequential layers
 \item Out-place so no rewriting performed
 \begin{itemize}
 \item Suited for `translation' transformations
 \end{itemize}
 \item All its computations are terminating and confluent
+\begin{itemize}
 \item Unbounded loops during execution are not allowed
+\end{itemize}
 
-\item Rules are grouped in sequential layers
+
 \end{itemize}
 
 \blfootnote{Selim, Gehan et al. "Model transformations for migrating legacy deployment models in the automotive industry." Software and Systems Modeling 14, no. 1 (2013): 365-381.}
 
-\end{frame}
-
-
-\begin{frame}{Transformation Metamodels}
-
-\begin{center}
-\includegraphics[width=0.8\textwidth]{figures/Metamodels_F2P}
-\end{center}
-\begin{itemize}
-\item Transform \textit{Members} to \textit{Men} and \textit{Women}
-\end{itemize}
 \end{frame}
 
 
@@ -123,33 +116,39 @@
 
 
 \begin{frame}{Pre- / Post- Visual Contracts}
-\begin{center}
-\includegraphics[width=0.35\textwidth]{figures/Pos_FourMembers}
-\end{center}
-\pause
-\begin{itemize}[<+->]
-\item If blue graph is found in input model, then red graph is found in output model
-\item Objective: Prove for all input models/transformation executions - input independence
-\item \textit{A family with a father, mother, son, daughter
-should always produce two males and two females in the
-target community}
-\end{itemize}
+\begin{columns}[T] % contents are top vertically aligned
+     \begin{column}[T]{0.45\textwidth} % each column can also be its own environment
+     \includegraphics[width=\textwidth]{figures/Pos_FourMembers}
+     \end{column}
+     \begin{column}[T]{0.55\textwidth}
+     \begin{itemize}[<+->]
+     \item If blue graph is found in input model, then red graph is found in output model
+     \item Objective: Prove for all input models/transformation executions - input independence
+     \item \textit{A family with a father, mother, son, daughter
+     should always produce two males and two females in the
+     target community}
+     \end{itemize}
+     \end{column}
+     \end{columns}
+
 \end{frame}
 
 \begin{frame}{SyVOLT Tool}
 \begin{itemize}[<+->]
-\item Proves contracts on DSLTrans transformations
 \item All possible executions of the transformation are symbolically constructed
 \begin{itemize}[<+->]
 \item Built as sets of rules called path conditions
 \begin{itemize}
 \item No rules execute, only rule 1 executes, rule 1 and rule 2 both execute
+\end{itemize}
 \item Rule dependencies/combinations resolved
+
 \end{itemize}
 \item Final finite set of path conditions represents all possible transformation executions
-\end{itemize}
+
 \item A contract holds for a transformation if it holds for all generated path conditions
-\item Otherwise, counter-example is produced
+\item Otherwise, counter-example path conditions are produced
+\item Proving process completes within seconds
 \end{itemize}
 \blfootnote{L. Lúcio, B. Oakes, and H. Vangheluwe. A technique for symbolically verifying properties of graph-based model transformations. Technical report, Technical Report SOCS-TR-2014.1, McGill U, 2014.}
 \end{frame}
@@ -161,27 +160,6 @@ target community}
 \begin{itemize}[<+->]
 \item Statement: \textit{A family with a mother and a daughter will always produce a community with a man}
 \item Fails on path condition: `HFamComm\_HMotherRule\_HDaughterRule'
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}{Performance}
-\begin{center}
-\setlength\tabcolsep{3pt}  % default value: 6pt
-\tiny  %%  command to change the font size
-
-\begin{tabular}{l | c| | r |r || r |r || r}
- &  \textbf{ATL/ DSLTrans}&  \textbf{Path Conds.}  & \textbf{Time (s)} & \textbf{Contracts} & \textbf{Time (s)}& \textbf{Memory}\\
- & \centering \textbf{Rules}&  \textbf{Generated}&  &  \textbf{Proved}& & \textbf{(MB)} \\ \hline\hline
-Families-to-Person & \centering 5 / 9 & 101 & \textbf{0.24} & 4 & \textbf{0.52}& 54\\\hline
-Ext. Families-to-Person & \centering10  / 19 & 366	& \textbf{3.89} & 10	& \textbf{7.35} & 59\\\hline
-GM-to-AUTOSAR (handbuilt)& \centering5 / 9 & 13 & \textbf{0.18} & 9 &\textbf{ 0.15 }& 58\\
-GM-to-AUTOSAR (HOT)& \centering5 / 9 & 10 & \textbf{0.26} & 9 & \textbf{0.15} & 60\\\hline
-UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} & 55\\
-\end{tabular}
-\end{center}
-\begin{itemize}
-\item Multiple contracts can be proved in seconds
 \end{itemize}
 \end{frame}
 
@@ -200,7 +178,7 @@ UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} &
 \end{itemize}
 
 \begin{itemize}
-\item Rule reachability is also handled by the prover, which reports if a rule cannot be proven to execute
+\item Prover reports rule reachability as well
 \end{itemize}
 
 \blfootnote{Selim, G.M.: Formal Verification of Graph-Based Model Transformations. Ph.D. thesis, Queen’s University. 2015.}
@@ -208,14 +186,14 @@ UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} &
 
 \begin{frame}{Pattern Contracts}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{figures/Pos_AssocCity}
+\includegraphics[width=0.65\textwidth]{figures/Pos_ChildSchool}
 \end{center}
 \begin{itemize}
 \item Relates elements in input model to elements in output model
-\item \textit{A country which contains a city, which contains a company, produces a corresponding community, town hall, and committee}
-\item Intention is to allow verification that multiple rules are interacting in a valid way
+\item \textit{If a Child goesTo a School that has a special Service, then a SpecialFacility has the associated Person as a member}
+\item Intention is to allow verification of rule interaction
 \begin{itemize}
-\item Difficult from manual inspection of the rules themselves
+\item Three rules in example
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -251,7 +229,7 @@ UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} &
 \includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
 \end{center}
 \begin{itemize}
-\item Check if path condition is well-formed input or output syntax
+\item Check if path condition has well-formed input or output syntax
 \item \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
 \end{itemize}
 \end{frame}
@@ -292,8 +270,6 @@ UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} &
 \item Cannot count elements created
 \item Difficult to express \textit{for each A element, there exists unique B element}
 \end{itemize}
-\item Difficult to reason about negative contracts
-\item Cannot validate instance data
 \end{itemize}
 \end{itemize}
 
