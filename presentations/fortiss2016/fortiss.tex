@@ -235,14 +235,14 @@ UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} &
 \begin{frame}{Propositional Logic and Pivots}
 \begin{center}
 \begin{center}
-\includegraphics[width=0.45\textwidth]{figures/syntactic_invariant}
+\includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
 \end{center}
 \end{center}
 \pause
 \begin{itemize}[<+->]
 \item Contracts can be combined with AND, OR, NOT, IF-THEN
 \item Pivots ensure that same element is bound in both contracts
-\item \textit{Only one Person is in the Community in the output model}
+\item  \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
 \end{itemize}
 \end{frame}
 
@@ -278,34 +278,44 @@ UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} &
 \begin{frame}{Contract Limitations}
 
 \begin{itemize}
+\item DSLTrans transformation language only manipulates Strings
+\begin{itemize}
+\item Could pack data and operations into Strings
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
 \item Limitations from symbolic execution technique
 \begin{itemize}
 \item Loses multiplicity information
+\begin{itemize}
+\item Cannot count elements created
+\item Difficult to express \textit{for each A element, there exists unique B element}
+\end{itemize}
 \item Difficult to reason about negative contracts
 \item Cannot validate instance data
 \end{itemize}
-\item DSLTrans transformation language only manipulates Strings
-\begin{itemize}
-\item Can be worked around
 \end{itemize}
-\end{itemize}
+
 \end{frame}
 
 \begin{frame}{Contract Limitations}
 
 \begin{itemize}
-\item Contract language equipped for structural queries
+\item No query language implemented
 \begin{itemize}
-\item Cannot compute queries
+\item Cannot create sets of elements
+\item Cannot match pattern with inheritance and report subtype names
+\item No indirect links/navigation
 \end{itemize}
-\item Abstractly representation of the rules that
-execute, and the number of times each rule executes,
-\item Cannot validate instance data for input or output models
+\item Difficult to reason about negative contracts
+\item Cannot validate instance data
 \begin{itemize}
-\item All input names start with a capital
-letter.
+\item `Do all names start with G'
+\item `Is gender == male or age < 18'
 \end{itemize}
 \end{itemize}
+
 \end{frame}
 
 
@@ -331,49 +341,39 @@ letter.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Other Work}
+\begin{frame}{Literature}
 \small
 \begin{itemize}[<+->]
 
-\item Fully Verifying Transformation Contracts for Declarative ATL (MODELS 2015)\\
-
+\item Fully Verifying Transformation Contracts for Declarative ATL\\
 Bentley James Oakes, Javier Troya, Levi Lucio, and Manuel Wimmer\\
-(McGill University, Canada; Vienna University of Technology, Austria)
+Proceedings of MODELS 2015
 \begin{itemize}
-\item Extended to journal article: Full Contract Verification for ATL using Symbolic Execution, SoSym (to appear)
+\item Extended to journal article: Full Contract Verification for ATL using Symbolic Execution, SoSyM (to appear)
 \end{itemize}
-\item  Finding and fixing bugs in model transformations with formal verification: An experience report (AMT)\\
+\item  Finding and Fixing Bugs in Model Transformations with Formal Verification: An Experience Report\\
 Gehan M. K. Selim, James R. Cordy, Juergen Dingel, Levi Lucio and Bentley James Oakes\\
-(Queen's University, Canada; McGill University, Canada) 
-\item 
+Proceedings of AMT 2015
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Eclipse Plugin}
 \begin{center}
-\includegraphics[width=\textwidth]{figures/eclipse_frontend}
+\includegraphics[height=0.8\textheight]{figures/eclipse_frontend}
 \end{center}
 
 \begin{itemize}
-\item Eclipse Graphical Modeling Framework plugin
-\item Allows for building of DSLTrans transformations and contracts.
-\item Fully automatic proving process and the approach's formal details are completely hidden from the user.
-\item Property proving process will automatically
-            create all required artifacts, run
-            the process, and provide the results to the user within the
-            Eclipse environment.
-\item User always stays within the Eclipse
-            environment when developing the contracts and the model
-            transformations.
+\item Eclipse GMF plugin for building DSLTrans transformations and contracts.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Conclusion}
 \begin{itemize}[<+->]
-\item Can verify visual contracts on DSLTrans transformations in feasible time
-\item Contracts verified on all transformation executions
+\item Verification of visual contracts on DSLTrans transformations
+\item Approach is complete for all transformation executions
+\item Can extend contract language expressiveness
 \item Eclipse plugin to build transformation and contracts
-\item Future work is to focus on contract-driven development of model transformations
+\item Current work: Verification of mbeddr transformation
 \end{itemize}
 \pause
 \begin{itemize}
