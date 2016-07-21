@@ -56,8 +56,8 @@
 \item Model transformations are at the heart of model-driven engineering
 \item Want to verify correctness for transformation specifications
 \begin{itemize}[<+->]
-\item Verify visual contracts
-\item Identify combinations of rules where contracts hold or not
+\item Verify visual/structural contracts
+\item Identify those combinations of rules where contracts hold or not
 \end{itemize}
 \item Objective: Verification for all input models
 \begin{itemize}
@@ -122,13 +122,12 @@
 
 
 
-\begin{frame}{Contracts}
+\begin{frame}{Pre- / Post- Visual Contracts}
 \begin{center}
-\includegraphics[width=0.40\textwidth]{figures/Pos_FourMembers}
+\includegraphics[width=0.35\textwidth]{figures/Pos_FourMembers}
 \end{center}
 \pause
 \begin{itemize}[<+->]
-\item Pre- / post- visual contracts
 \item If blue graph is found in input model, then red graph is found in output model
 \item Objective: Prove for all input models/transformation executions - input independence
 \item \textit{A family with a father, mother, son, daughter
@@ -137,32 +136,9 @@ target community}
 \end{itemize}
 \end{frame}
 
-
-\begin{frame}{Contracts}
-\begin{center}
-\includegraphics[width=0.45\textwidth]{figures/Pos_MotherFather}
-\end{center}
-\pause
-\begin{itemize}[<+->]
-\item Reasoning about attributes of elements
-\item \textit{Is the full name of the produced Person correctly created from the last name of the Family and the first name of the Member?}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Contracts}
-\begin{center}
-\includegraphics[width=0.5\textwidth]{figures/Pos_DaughterMother}
-\end{center}
-\begin{itemize}[<+->]
-\item A contract that will not hold
-\item \textit{A family with a mother and a daughter will always produce a community with a man}
-\end{itemize}
-\end{frame}
-
-
 \begin{frame}{SyVOLT Tool}
 \begin{itemize}[<+->]
-\item Tool to prove visual contracts on DSLTrans transformations
+\item Proves contracts on DSLTrans transformations
 \item All possible executions of the transformation are symbolically constructed
 \begin{itemize}[<+->]
 \item Built as sets of rules called path conditions
@@ -170,67 +146,103 @@ target community}
 \item No rules execute, only rule 1 executes, rule 1 and rule 2 both execute
 \item Rule dependencies/combinations resolved
 \end{itemize}
-\item Final set of path conditions represents all possible transformation executions
+\item Final finite set of path conditions represents all possible transformation executions
 \end{itemize}
 \item A contract holds for a transformation if it holds for all generated path conditions
+\item Otherwise, counter-example is produced
 \end{itemize}
 \blfootnote{L. Lúcio, B. Oakes, and H. Vangheluwe. A technique for symbolically verifying properties of graph-based model transformations. Technical report, Technical Report SOCS-TR-2014.1, McGill U, 2014.}
 \end{frame}
-
 
 \begin{frame}{Contract Proving Example}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{figures/Pos_DaughterMother}
 \end{center}
 \begin{itemize}[<+->]
-\item \textit{A family with a mother and a daughter will always produce a community with a man}
-\item Fails on path condition: 'HEmpty\_HRoot\_HMotherRule\_HDaughterRule'
+\item Statement: \textit{A family with a mother and a daughter will always produce a community with a man}
+\item Fails on path condition: `HFamComm\_HMotherRule\_HDaughterRule'
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}{Performance}
 \begin{center}
-\includegraphics[width=\textwidth]{figures/performance}
+\setlength\tabcolsep{3pt}  % default value: 6pt
+\tiny  %%  command to change the font size
+
+\begin{tabular}{l | c| | r |r || r |r || r}
+ &  \textbf{ATL/ DSLTrans}&  \textbf{Path Conds.}  & \textbf{Time (s)} & \textbf{Contracts} & \textbf{Time (s)}& \textbf{Memory}\\
+ & \centering \textbf{Rules}&  \textbf{Generated}&  &  \textbf{Proved}& & \textbf{(MB)} \\ \hline\hline
+Families-to-Person & \centering 5 / 9 & 101 & \textbf{0.24} & 4 & \textbf{0.52}& 54\\\hline
+Ext. Families-to-Person & \centering10  / 19 & 366	& \textbf{3.89} & 10	& \textbf{7.35} & 59\\\hline
+GM-to-AUTOSAR (handbuilt)& \centering5 / 9 & 13 & \textbf{0.18} & 9 &\textbf{ 0.15 }& 58\\
+GM-to-AUTOSAR (HOT)& \centering5 / 9 & 10 & \textbf{0.26} & 9 & \textbf{0.15} & 60\\\hline
+UML-to-Kiltera & \centering20 / 17 & 322 & \textbf{1.86} & 15 & \textbf{11.99} & 55\\
+\end{tabular}
 \end{center}
+\begin{itemize}
+\item Multiple contracts can be proved in seconds
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Contract Expressibility}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{figures/Pos_DaughterMother}
-\end{center}
+
 \begin{itemize}[<+->]
-\item The next few slides will discuss some concepts that can be expressed with our contracts.
-\item This information is reproduced from: Selim, G.M.: Formal Verification of Graph-Based Model
-Transformations. Ph.D. thesis, Queen’s University (2015)
-\end{itemize}
-\begin{itemize}
-\item Multiplicity invariants
-\item Syntactic invariants
+\item Next few slides will discuss concepts expressible with our contract language.
+
+\begin{itemize}[<+->]
 \item Pattern contracts
+\item Element attributes
+\item Propositional logic and pivots
+\item Syntactic invariants
+\item Multiplicity invariants
+\end{itemize}
 \end{itemize}
 
 \begin{itemize}
 \item Rule reachability is also handled by the prover, which reports if a rule cannot be proven to execute
 \end{itemize}
+
+\blfootnote{Selim, G.M.: Formal Verification of Graph-Based Model Transformations. Ph.D. thesis, Queen’s University. 2015.}
+\end{frame}
+
+\begin{frame}{Pattern Contracts}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/Pos_AssocCity}
+\end{center}
+\begin{itemize}
+\item Relates elements in input model to elements in output model
+\item \textit{A country which contains a city, which contains a company, produces a corresponding community, town hall, and committee}
+\item Intention is to allow verification that multiple rules are interacting in a valid way
+\begin{itemize}
+\item Difficult from manual inspection of the rules themselves
+\end{itemize}
+\end{itemize}
 \end{frame}
 
 
-\begin{frame}{Multiplicity Invariants}
+\begin{frame}{Element Attributes}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{figures/communityPersonProp_if}
-\includegraphics[width=0.7\textwidth]{figures/communityPersonProp_then}
+\includegraphics[width=0.50\textwidth]{figures/Pos_MotherFather}
 \end{center}
-\begin{itemize}
-\item Can express multiplicity invariants contained
-in the source or target metamodel.
-\item \textit{only one Person should be connected to a Community in the output
-model}
+\pause
+\begin{itemize}[<+->]
+\item Reasoning about (String) attributes of elements
+\item \textit{Is the full name of the produced Person correctly created from the last name of the Family and the first name of the Member?}
 \end{itemize}
-\begin{itemize}
-\item Due to the abstraction of our approach these multiplicity invariants are not strict.
-\item Our prover will not generate path conditions
-where a rule executes multiple times.
-\item Example is therefore \textit{two Persons are not always created}
+\end{frame}
+
+\begin{frame}{Propositional Logic and Pivots}
+\begin{center}
+\begin{center}
+\includegraphics[width=0.45\textwidth]{figures/syntactic_invariant}
+\end{center}
+\end{center}
+\pause
+\begin{itemize}[<+->]
+\item Contracts can be combined with AND, OR, NOT, IF-THEN
+\item Pivots ensure that same element is bound in both contracts
+\item \textit{Only one Person is in the Community in the output model}
 \end{itemize}
 \end{frame}
 
@@ -239,26 +251,42 @@ where a rule executes multiple times.
 \includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
 \end{center}
 \begin{itemize}
-\item Check whether the path
-condition is well-formed with respect to the input or
-output syntax
-\item \textit{if there is an Inst element, then that
-Inst element has the same name as a ProcDef element}
+\item Check if path condition is well-formed input or output syntax
+\item \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Pattern Contracts}
+\begin{frame}{Multiplicity Invariants}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{figures/Pos_AssocCity}
+\includegraphics[width=0.45\textwidth]{figures/communityPersonProp_if}
+\includegraphics[width=0.45\textwidth]{figures/communityPersonProp_then}
 \end{center}
 \begin{itemize}
-\item Relate elements in the input model
-to elements in the output model
-\item \textit{A country which contains a city, which contains a company, should produce a corresponding community, town hall, and committee}
-\item Intention is to allow the user to verify that
-multiple rules are interacting in a valid way
+\item \textit{Only one Person is in the Community in the output model}
+\end{itemize}
 \begin{itemize}
-\item Difficult from manual inspection of the rules themselves
+\item Abstraction of our approach loses multiplicity information
+\begin{itemize}
+\item Multiple applications of a rule are not represented
+\end{itemize}
+\item Contract only fails if \textit{two Persons are always created in output}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Contract Limitations}
+
+\begin{itemize}
+\item Limitations from symbolic execution technique
+\begin{itemize}
+\item Loses multiplicity information
+\item Difficult to reason about negative contracts
+\item Cannot validate instance data
+\end{itemize}
+\item DSLTrans transformation language only manipulates Strings
+\begin{itemize}
+\item Can be worked around
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -266,13 +294,9 @@ multiple rules are interacting in a valid way
 \begin{frame}{Contract Limitations}
 
 \begin{itemize}
-\item Contract language is currently limited
-as it can only represent structural conditions and not
-arbitrary expressions
+\item Contract language equipped for structural queries
 \begin{itemize}
-\item Much less powerful than OCL
-\item  Current implementation does not contain
-operators for sets, or for handling non-String attributes.
+\item Cannot compute queries
 \end{itemize}
 \item Abstractly representation of the rules that
 execute, and the number of times each rule executes,
