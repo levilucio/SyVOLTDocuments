@@ -174,29 +174,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Propositional Logic and Pivots}
-\begin{center}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
-\end{center}
-\end{center}
-\pause
-\begin{itemize}[<+->]
-\item Contracts can be combined with AND, OR, NOT, IF-THEN
-\item Pivots ensure that same element is bound in both contracts
-\item  \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
-\end{itemize}
-\end{frame}
 
-\begin{frame}{Syntactic Invariants}
-\begin{center}
-\includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
-\end{center}
-\begin{itemize}
-\item Check if path condition has well-formed input or output syntax
-\item \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
-\end{itemize}
-\end{frame}
 
 %\begin{frame}{Multiplicity Invariants}
 %\begin{center}
@@ -259,20 +237,20 @@
 \end{center}
 \begin{itemize}[<+->]
 \item Statement: \textit{A family with a mother and a daughter will always produce a community with a man}
-\item Fails on path condition: `HFamComm\_HMotherRule\_HDaughterRule'
+\item Fails on path condition: `FamilyCommunityRule\_MotherRule\_DaughterRule'
 \end{itemize}
 \end{frame}
 
 \section{ATL Experiments}
 
-\begin{frame}{ATL}
+\begin{frame}{ATL Verification}
 
 \begin{itemize}[<+->]
-\item Translating declarative ATL transformation into DSLTrans language
+\item Translate declarative ATL transformation into DSLTrans language
 \item Verify visual contracts on DSLTrans
 \end{itemize}
 \begin{center}
-\includegraphics[width=\textwidth]{figures/overview}
+\includegraphics[width=0.9\textwidth]{figures/overview}
 \end{center}
 \begin{itemize}[<+->]
 \item Performed through a higher-order transformation
@@ -395,7 +373,7 @@ Contract 3 & \textit{Original} & 17 & 322 & 1.87 & 7.06\\
 
 \begin{itemize}
 \item Substantial reduction in path conditions created
-\item Corresponding reduction in proving time
+\item Corresponding reduction in building and proving time
 \end{itemize}
 \end{frame}
 
@@ -407,6 +385,7 @@ Contract 3 & \textit{Original} & 17 & 322 & 1.87 & 7.06\\
 \item Core idea: Use metamodels to discard invalid output models
 \item Example: a \textit{Man} is contained by a \textit{Community} through the \textit{persons} association
 \item Any output model that has a \textit{Man} without \textit{persons} is invalid
+\item Can the \textit{persons} link still be built by the transformation?
 \end{itemize}
 \begin{center}
 \includegraphics[width=\textwidth]{figures/PersonsMM}
@@ -416,18 +395,18 @@ Contract 3 & \textit{Original} & 17 & 322 & 1.87 & 7.06\\
 \end{frame}
 
 \begin{frame}{Pruning}
-\begin{itemize}
-
-\item Find containment links between classes in metamodel
-\item Examine path conditions for missing containment links
-\item Are there still rules that can be symbolically executed to build links?
-\item If not, the output model is not valid, and that branch can be pruned
-
-\end{itemize}
 \begin{center}
 %\includegraphics[width=0.35\textwidth]{figures/Father2Man}
 \includegraphics[width=0.5\textwidth]{figures/copersonsMan}
 \end{center}
+Procedure:
+\begin{itemize}
+\item Note the containment links between classes in the metamodel
+\item Examine path conditions for any missing containment links
+\item Can the missing links be built by future rules in the symbolic execution? 
+\item If not, the output model is not valid, and that path condition is discarded
+\end{itemize}
+
 
 %\begin{itemize}
 %\item Whenever left rule symbolically executes, right rule must also symbolically execute
@@ -524,6 +503,30 @@ Proceedings of AMT 2015
 %
 %\blfootnote{Selim, G.M.: Formal Verification of Graph-Based Model Transformations. Ph.D. thesis, Queen’s University. 2015.}
 %\end{frame}
+
+\begin{frame}{Propositional Logic and Pivots}
+\begin{center}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
+\end{center}
+\end{center}
+\pause
+\begin{itemize}[<+->]
+\item Contracts can be combined with AND, OR, NOT, IF-THEN
+\item Pivots ensure that same element is bound in both contracts
+\item  \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Syntactic Invariants}
+\begin{center}
+\includegraphics[width=0.7\textwidth]{figures/syntactic_invariant}
+\end{center}
+\begin{itemize}
+\item Check if path condition has well-formed input or output syntax
+\item \textit{If there is an Inst element, then that Inst element has the same name as a ProcDef element}
+\end{itemize}
+\end{frame}
 
 
 \begin{frame}{Multiplicity Invariants}
