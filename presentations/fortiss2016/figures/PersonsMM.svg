@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="26cm" height="6cm" viewBox="572 179 511 104" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="573.01" y="201.784" width="112.45" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="573.01" y="201.784" width="112.45" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="629.235" y="220.784">Community</text>
+    <rect style="fill: #ffffff" x="573.01" y="229.784" width="112.45" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="573.01" y="229.784" width="112.45" height="8"/>
+    <rect style="fill: #ffffff" x="573.01" y="237.784" width="112.45" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="573.01" y="237.784" width="112.45" height="8"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="801.433" y="197.745" width="140.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="801.433" y="197.745" width="140.9" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:italic;font-weight:700" x="871.883" y="216.745">Person</text>
+    <rect style="fill: #ffffff" x="801.433" y="225.745" width="140.9" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="801.433" y="225.745" width="140.9" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="804.433" y="239.745">+fullName: String</text>
+    <rect style="fill: #ffffff" x="801.433" y="245.745" width="140.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="801.433" y="245.745" width="140.9" height="8"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1004.77" y="238.168" width="48.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1004.77" y="238.168" width="48.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1028.82" y="257.168">Man</text>
+    <rect style="fill: #ffffff" x="1004.77" y="266.168" width="48.1" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1004.77" y="266.168" width="48.1" height="8"/>
+    <rect style="fill: #ffffff" x="1004.77" y="274.168" width="48.1" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1004.77" y="274.168" width="48.1" height="8"/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1004.77" y="180.724" width="76.95" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1004.77" y="180.724" width="76.95" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1043.24" y="199.724">Woman</text>
+    <rect style="fill: #ffffff" x="1004.77" y="208.724" width="76.95" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1004.77" y="208.724" width="76.95" height="8"/>
+    <rect style="fill: #ffffff" x="1004.77" y="216.724" width="76.95" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1004.77" y="216.724" width="76.95" height="8"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="961.578,225.745 981.552,225.745 981.552,260.168 1003.76,260.168 "/>
+    <polygon style="fill: #ffffff" points="961.578,217.745 945.578,225.745 961.578,233.745 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="961.578,217.745 945.578,225.745 961.578,233.745 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="961.57,225.745 981.443,225.745 981.443,202.724 1003.77,202.724 "/>
+    <polygon style="fill: #ffffff" points="961.57,217.745 945.57,225.745 961.57,233.745 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="961.57,217.745 945.57,225.745 961.57,233.745 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="796.961,211.745 724.021,211.745 724.021,223.784 711.623,223.784 "/>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="783.197,219.745 799.197,211.745 783.197,203.745 "/>
+    <polygon style="fill: #000000" points="686.451,223.784 700.451,218.984 714.451,223.784 700.451,228.584 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="686.451,223.784 700.451,218.984 714.451,223.784 700.451,228.584 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="726.021" y="214.764"/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="781.433" y="208.745"> persons</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="781.433" y="224.745">1..*</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="718.451" y="220.784"/>
+  </g>
+</svg>
